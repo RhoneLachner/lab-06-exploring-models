@@ -39,7 +39,8 @@ describe('app tests', () => {
   });
   //GET BY ID TEST
   it('finds movies from table by ID with GET', async() => {
-    const movie = await Movie.insert({ title: 'The Matrix', 
+    const movie = await Movie.insert({ 
+      title: 'The Matrix', 
       director: 'Lana and Lilly Wachowski',
       url: 'https://www.warnerbros.com/movies/matrix' });
 
