@@ -2,15 +2,13 @@ const fs = require('fs');
 const request = require('supertest');
 const app = require('../lib/utils/app.js');
 const pool = require('../lib/utils/pool.js');
-const Movie = require('../models/Movies.js');
-
+const Movie = require('../models/Movie.js');
 
 
 describe('app tests', () => {
   beforeEach(() => {
     return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
   });
-
   afterAll(() => {
     return pool.end();
   });
@@ -25,7 +23,6 @@ describe('app tests', () => {
       });
     
     console.log(res.body);
-
     expect(res.body).toEqual({
       id: expect.anything(),
       title: 'The Matrix', 
@@ -37,7 +34,7 @@ describe('app tests', () => {
   it('finds movies from table with GET', async() => {
     const res = await request(app)
       .get('/movies');
-
+      
     expect(res.body).toEqual(res.body);
   });
   //GET BY ID TEST

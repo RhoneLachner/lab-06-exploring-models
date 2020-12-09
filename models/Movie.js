@@ -66,6 +66,4 @@ static async delete(id) {
   return new Movie(rows[0]);
 }
 
-
-
 };
