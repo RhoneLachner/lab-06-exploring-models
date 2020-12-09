@@ -34,7 +34,7 @@ describe('app tests', () => {
   it('finds movies from table with GET', async() => {
     const res = await request(app)
       .get('/movies');
-      
+
     expect(res.body).toEqual(res.body);
   });
   //GET BY ID TEST
@@ -59,7 +59,7 @@ describe('app tests', () => {
     const response = await request(app)
       .put(`/movies/${movie.id}`)
       .send({
-        title: 'Into the OTHER Forest', 
+        title: 'Matrix RELOADED', 
         director: 'OTHER Lana and Lilly Wachowski',
         url: 'https://www.warnerbros.com/movies/matrix'
       });
@@ -67,7 +67,7 @@ describe('app tests', () => {
     console.log(`/movies/${movie.id}`);
     expect(response.body).toEqual({
       ...movie,
-      title: 'Into the OTHER Forest', 
+      title: 'Matrix RELOADED', 
       director: 'OTHER Lana and Lilly Wachowski'
     });
   });
