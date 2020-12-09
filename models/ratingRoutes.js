@@ -7,34 +7,34 @@ const Rating = require('../../models/Rating');
 app.use(express.json());
 
 app.post('/ratings', (req, res, next) => {
-    Rating
+  Rating
     .insert(req.body)
     .then(movie => res.send(movie))
     .catch(next);
 });
 
 app.get('/ratings', (req, res) => {
-    Rating
+  Rating
     .find()
     .then(movie => res.send(movie));
 });
 
 app.get('/ratings/:id', (req, res) => {
-  Movie
+  Rating
     .findById(req.params.id)
     .then(movie => res.send(movie));
   
 });
 
 app.put('/ratings/:id', (req, res) => {
-  Movie
+  Rating
     .update(req.params.id, req.body)
     .then(movie => res.send(movie));
     
 });
 
 app.delete('/ratings/:id', (req, res) => {
-  Movie
+  Rating
     .delete(req.params.id)
     .then(movie => res.send(movie));
    
