@@ -60,7 +60,7 @@ describe('app tests', () => {
       .put(`/movies/${movie.id}`)
       .send({
         title: 'Matrix RELOADED', 
-        director: 'OTHER Lana and Lilly Wachowski',
+        director: 'Lana and Lilly Wachowski',
         url: 'https://www.warnerbros.com/movies/matrix'
       });
 
@@ -68,7 +68,7 @@ describe('app tests', () => {
     expect(response.body).toEqual({
       ...movie,
       title: 'Matrix RELOADED', 
-      director: 'OTHER Lana and Lilly Wachowski'
+      director: 'Lana and Lilly Wachowski'
     });
   });
   //DELETE TEST
