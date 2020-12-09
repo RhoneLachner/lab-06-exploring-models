@@ -3,9 +3,11 @@ const request = require('supertest');
 const app = require('../lib/utils/app.js');
 const pool = require('../lib/utils/pool.js');
 const Movie = require('../models/Movie.js');
+const Rating = require('../models/Rating.js');
 
 
 describe('app tests', () => {
+    
   beforeEach(() => {
     return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
   });

@@ -1,4 +1,5 @@
 const pool = require('../lib/utils/pool.js');
+const Rating = require('./Rating.js');
 
 module.exports = class Movie {
 id;
@@ -30,14 +31,30 @@ static async find() {
   return rows.map(row => new Movie(row)); 
 }
 
+//ADDING RATING JOIN HERE
 static async findById(id) {
   const { rows } = await pool.query(
-    'SELECT * FROM movies WHERE id=$1',
+    `
+      SELECT 
+        movies.*,
+        array_to_json(array_agg(ratings.*)) AS ratings
+      FROM
+        movies
+      JOIN ratings
+      ON movies.id = ratings.movie_id
+      WHERE movies.id=$1
+      GROUP BY movies.id     
+     `,
+
     [id]
   );
   if(!rows[0]) throw new Error(`No book with id ${id}`);
 
-  return new Movie(rows[0]);
+  return { 
+    ...new Movie(rows[0]),
+    ratings: rows[0].ratings.map(rating => new Rating(rating))
+  };
+  
 }
 
 static async update(id, { title, director, url }) {
