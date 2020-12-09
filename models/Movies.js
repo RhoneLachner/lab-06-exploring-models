@@ -1,4 +1,4 @@
-const pool = require('../lib/utils/pool');
+const pool = require('../lib/utils/pool.js');
 
 module.exports = class Movie {
 id;
