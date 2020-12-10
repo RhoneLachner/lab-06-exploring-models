@@ -48,7 +48,7 @@ static async findById(id) {
 
     [id]
   );
-  if(!rows[0]) throw new Error(`No book with id ${id}`);
+  if(!rows[0]) throw new Error(`No movie with id ${id}`);
 
   return { 
     ...new Movie(rows[0]),
@@ -68,7 +68,7 @@ static async update(id, { title, director, url }) {
     `,
     [title, director, url, id]
   );
-  if(!rows[0]) throw new Error(`No book with id ${id}`);
+  if(!rows[0]) throw new Error(`No movie with id ${id}`);
 
   return new Movie(rows[0]);
 }

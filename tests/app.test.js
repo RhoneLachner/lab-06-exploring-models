@@ -8,7 +8,7 @@ const Rating = require('../models/Rating.js');
 
 describe('app tests', () => {
     
-  beforeEach(() => {
+  beforeEach (() => {
     return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
   });
   afterAll(() => {
@@ -39,44 +39,44 @@ describe('app tests', () => {
 
     expect(res.body).toEqual(res.body);
   });
-  //GET WITH RATING
-  test.only('finds a movie by id and associated ratings via GET', async() => {
-    const movie = await Movie.insert({
-      title: 'The Matrix', 
-      director: 'Lana and Lilly Wachowski',
-      url: 'https://www.warnerbros.com/movies/matrix'
-    });
-
-    const ratings = await Promise.all([
-      { number: 1, movieId: movie.id },
-      { number: 4, movieId: movie.id },
-      { number: 2, movieId: movie.id },
-    ].map(rating => Rating.insert(rating)));    
-
-    const res = await request(app)
-      .get(`/movies/${movie.id}`);
-
-      console.log(res.body);
-    expect(res.body).toEqual({
-      ...movie,
-      ratings: expect.arrayContaining(ratings)
-    });
-  });
-
 
   //GET BY ID TEST
-  it('finds movies from table by ID with GET', async() => {
-    const movie = await Movie.insert({ 
-      title: 'The Matrix', 
-      director: 'Lana and Lilly Wachowski',
-      url: 'https://www.warnerbros.com/movies/matrix' });
+  // it('finds movies from table by ID with GET', async() => {
+  //   const movie = await Movie.insert({ 
+  //     title: 'The Matrix', 
+  //     director: 'Lana and Lilly Wachowski',
+  //     url: 'https://www.warnerbros.com/movies/matrix' });
 
-    const response = await request(app)
-      .get(`/movies/${movie.id}`);
+  //   const response = await request(app)
+  //     .get(`/movies/${movie.id}`);
 
-    // console.log(`/movies/${movie.id}`);
-    expect(response.body).toEqual(movie);
-  });
+  //   // console.log(`/movies/${movie.id}`);
+  //   expect(response.body).toEqual(movie);
+  // });
+  // //GET BY ID WITH RATING TEST
+  // it('finds a movie by id and associated ratings via GET', async() => {
+  //   const movie = await Movie.insert({
+  //     title: 'The Matrix', 
+  //     director: 'Lana and Lilly Wachowski',
+  //     url: 'https://www.warnerbros.com/movies/matrix'
+  //   });
+
+  //   const ratings = await Promise.all([
+  //     { number: 1, movieId: movie.id },
+  //     { number: 4, movieId: movie.id },
+  //     { number: 2, movieId: movie.id },
+  //   ].map(rating => Rating.insert(rating)));    
+
+  //   const res = await request(app)
+  //     .get(`/movies/${movie.id}`);
+      
+  //   expect(res.body).toEqual({
+  //     ...movie,
+  //     ratings: expect.arrayContaining(ratings)
+  //   });
+  // });
+
+
   //PUT TEST
   it('updates movies from table by ID with PUT', async() => {
     const movie = await Movie.insert({ 
